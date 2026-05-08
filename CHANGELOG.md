@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- OSQP: Handle optional `raise_error` keyword argument to the solve function
+- OSQP: Handle optional `raise_error` keyword argument to the solve function (thanks to @vincentvaroquauxads)
 
 ## [4.12.0] - 2026-05-05
 
