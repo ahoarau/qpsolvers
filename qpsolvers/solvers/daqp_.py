@@ -118,6 +118,16 @@ def daqp_solve_problem(
     sense = np.zeros(mtot, dtype=c_int)
     sense[ms + mineq :] = 5
 
+    # DAQP requires writable input arrays
+    def ensure_writable(a: np.ndarray) -> np.ndarray:
+        return a if a.flags.writeable else a.copy()
+
+    H = ensure_writable(H)
+    f = ensure_writable(f)
+    Atot = ensure_writable(Atot)
+    bupper = ensure_writable(bupper)
+    blower = ensure_writable(blower)
+
     solve_start_time = time.perf_counter()
     x, obj, exitflag, info = daqp.solve(
         H, f, Atot, bupper, blower, sense, primal_start=initvals, **kwargs
